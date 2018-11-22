@@ -20,9 +20,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class JournalizeService {
-  private journalUrl = 'http://localhost:8080/api/journal';
-  private journalSort = 'http://localhost:8080/api/journalSort';
-  private journalAccountUrl = 'http://localhost:8080/api/journalAccount';
+  private journalUrl = 'https://server-sarif-financial1.herokuapp.com/api/journal';
+  private journalSort = 'https://server-sarif-financial1.herokuapp.com/api/journalSort';
+  private journalAccountUrl = 'https://server-sarif-financial1.herokuapp.com/api/journalAccount';
 
   //'/api/journal'
   //'/api/journalAccount'

@@ -11,11 +11,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LoginService {
-  private customersUrl = 'http://localhost:8080/api/users';
-  private resetURL = 'http://localhost:8080/api/resetPassword';
-  private emailURL = 'http://localhost:8080/api/emailSend';
-  private loginUrl = 'http://localhost:8080/api/loginVerify';
-  private sessionURL = 'http://localhost:8080/api/checkSession';
+  private customersUrl = 'https://server-sarif-financial1.herokuapp.com/api/users';
+  private resetURL = 'https://server-sarif-financial1.herokuapp.com/api/resetPassword';
+  private emailURL = 'https://server-sarif-financial1.herokuapp.com/api/emailSend';
+  private loginUrl = 'https://server-sarif-financial1.herokuapp.com/api/loginVerify';
+  private sessionURL = 'https://server-sarif-financial1.herokuapp.com/api/checkSession';
   constructor(
     private http: HttpClient
   ) { }

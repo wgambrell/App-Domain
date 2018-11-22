@@ -36,8 +36,8 @@ export class JournalizeComponent implements OnInit {
   @ViewChild('addJournalForm') public journalForm: NgForm;
   @ViewChild('journalAccountAddTable') public accountsTable: NgForm;
   @ViewChild('folderInput') public myInputVariable: ElementRef;
-  private fileUploadURL = 'http://localhost:8080/api/journalFiles';
-  private fileRetrieve = 'http://localhost:8080/api/retreiveJournalFiles';
+  private fileUploadURL = 'https://server-sarif-financial1.herokuapp.com/api/journalFiles';
+  private fileRetrieve = 'https://server-sarif-financial1.herokuapp.com/api/retreiveJournalFiles';
   journalNew = new Journal();
   journals = []; //list of journal entries
   timer = timer(8000);

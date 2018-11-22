@@ -16,11 +16,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private usersUrl = 'http://localhost:8080/api/users';  // URL to web api
-  private usersSortUrl = 'http://localhost:8080/api/usersSort';
-  private compareUserNameURL = 'http://localhost:8080/api/userNameCheck';
-  private compareEmailURL = 'http://localhost:8080/api/passwordCheck';
-  private getActiveURL = 'http://localhost:8080/api/getActive';
+  private usersUrl = 'https://server-sarif-financial1.herokuapp.com/api/users';  // URL to web api
+  private usersSortUrl = 'https://server-sarif-financial1.herokuapp.com/api/usersSort';
+  private compareUserNameURL = 'https://server-sarif-financial1.herokuapp.com/api/userNameCheck';
+  private compareEmailURL = 'https://server-sarif-financial1.herokuapp.com/api/passwordCheck';
+  private getActiveURL = 'https://server-sarif-financial1.herokuapp.com/api/getActive';
   constructor(
     private http: HttpClient
   ) { }

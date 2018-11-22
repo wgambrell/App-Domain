@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserLogService {
-  private log = 'http://localhost:8080/api/log';
+  private log = 'https://server-sarif-financial1.herokuapp.com/api/log';
   constructor(
     private http: HttpClient
   ) { }

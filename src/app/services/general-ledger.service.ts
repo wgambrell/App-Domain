@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class GeneralLedgerService {
-  private ledgerURL = 'http://localhost:8080/api/generalLedger';
+  private ledgerURL = 'https://server-sarif-financial1.herokuapp.com/api/generalLedger';
 
   constructor(
     private http: HttpClient
