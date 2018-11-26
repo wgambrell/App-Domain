@@ -32,7 +32,7 @@
     <tr >
       <td style="vertical-align: top"  >{{ thisJournal.Date | date: 'MM/dd/yyyy'}}</td>
     <td style="vertical-align: top">
-      Type
+      {{thisJournal.Type}}
     </td>
     <td style="vertical-align: top" >{{ thisJournal.CreatedBy }}</td>
     <td>
@@ -50,7 +50,7 @@
       </tr>
       <tr style=" background-color: transparent" *ngIf="thisJournal.FileID != null && thisJournal.FileID > 0">
         <td  class="accountslist">
-          <button class="btn btn-link " style="color: dodgerblue" (click)="getJournalFile(thisJournal.FileID)" >View Document</button>
+          <button class="btn btn-link " style="color: dodgerblue" (click)="getJournalFile(thisJournal.FileID, thisJournal.FileName)" >{{"\u21E9"+'  View Document -' + thisJournal.FileName}}</button>
         </td>
       </tr>
     </table>

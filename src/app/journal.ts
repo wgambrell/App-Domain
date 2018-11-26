@@ -6,7 +6,9 @@ export class Journal {
   Description: string;
   Reference: string;
   CreatedBy: string;
+  Type: string;
   FileID: number;
+  FileName: string;
   JournalAccounts: JournalAccount[];
   acceptance: string;
 }

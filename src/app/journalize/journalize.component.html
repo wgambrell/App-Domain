@@ -19,7 +19,7 @@
     <div id="popupModalConfirm" class="modal2" (click)="closeConfirmationPopup()">
        <div class="modal-content3">
          <div class="alert alert-success">
-            Your Journal entry has been added
+            {{confirmationType}}
          </div>
         </div>
     </div>
@@ -36,7 +36,9 @@
 
           <div>
             <label>Account Type</label>
-            <select id="selectType" class="form-control" style="width: 200px">
+            <select id="selectType" class="form-control"
+                    [(ngModel)]="journalNew.Type" style="width: 200px"
+            name="newselect">
               <option selected>Normal</option>
               <option>Adjusting</option>
               <option>Post-Closing</option>
@@ -113,7 +115,8 @@
               </td>
 
               <td class="accountsinput" style=" background-color: white">
-                <button class="btn btn-info" (click)="addCreditInput();" id="addCreditInput"  *ngIf="journalAccountsCredit.indexOf(account) == journalAccountsCredit.length -1">Add Credit</button>
+                <button class="btn btn-info" (click)="addCreditInput();" id="addCreditInput"  *ngIf="journalAccountsCredit.indexOf(account) == journalAccountsCredit.length -1"
+                >Add Credit</button>
               </td>
               <td class="accountsinput" style=" background-color: white" *ngIf="journalAccountsCredit.indexOf(account) > 0">
                 <button class="btn btn-danger" (click)="removeCredit(journalAccountsCredit.indexOf(account)); checkRepeatAccounts();" id="removeCreditInput"   >Remove</button>
@@ -149,7 +152,7 @@
             You have duplicate accounts
           </div>
           <button (click)="submit();" id="submitBtn" [disabled]="checkBothInputs() == 0" class="btn btn-primary ">Submit</button>
-          <button (click)="close(); addJournalForm.reset()" id="closeModalBtn" class="btn btn-danger " style=" position: relative; left: 10px; ">Cancel</button>
+          <button (click)="close();" id="closeModalBtn" class="btn btn-danger " style=" position: relative; left: 10px; ">Cancel</button>
         </form>
       </div>
     </div>
@@ -168,7 +171,7 @@
     </form>
 
     <button class="btn btn-info btn-lg" (click)="openCreateJournal()" >Journalize</button>
-    <div class="btn-group" style="float: right; margin-right: 8%">
+    <div class="btn-group" style="float: right; margin-right: 5%; ">
 
         <button type="button" class="btn btn-primary" name="options"   (click)="setApprovalType('all')">All</button>
 
@@ -202,14 +205,10 @@
 
     <tr *ngFor="let journal of journals | paginate: { itemsPerPage: perPage, currentPage: currPage }">
       <td style="vertical-align: top"  >{{ journal.Date | date: 'MM/dd/yyyy'}}</td>
-      <td style="vertical-align: top">
-        <table>
-        <tr *ngFor="let jaccount of journal.JournalAccounts" style=" background-color: transparent">
-         <td class="accountslist2" >{{jaccount.Type}}
+
+         <td style="vertical-align: top" >{{journal.Type}}
          </td>
-        </tr>
-      </table>
-      </td>
+
       <td style="vertical-align: top" >{{ journal.CreatedBy }}</td>
       <td>
        <table>
@@ -221,7 +220,7 @@
        </tr>
         <tr style=" background-color: transparent" *ngIf="journal.FileID != null && journal.FileID > 0">
           <td  class="accountslist">
-            <button class="btn btn-link " style="color: dodgerblue" (click)="getJournalFile(journal.FileID)" >View Document</button>
+            <button class="btn btn-link " style="color: dodgerblue" (click)="getJournalFile(journal.FileID, journal.FileName)" >{{"\u21E9"+'  View Document -' + journal.FileName}}</button>
           </td>
         </tr>
       </table>

@@ -73,11 +73,12 @@ export class RetainedEarningsComponent implements OnInit {
 
 
     doc.setFontSize(12);
-    doc.text(210, 40, 'Statement of Retained Earnings');
-    doc.text(210, 60, 'For the Year Ended ' +this.currentDate.getMonth() +'/'+ this.currentDate.getDate() +'/'+ this.currentDate.getFullYear());
+    doc.text(240, 40, 'Sarif Financial');
+    doc.text(210, 60, 'Statement of Retained Earnings');
+    doc.text(210, 80, 'For the Year Ended ' +this.currentDate.getMonth() +'/'+ this.currentDate.getDate() +'/'+ this.currentDate.getFullYear());
 
 
-    doc.autoTable(columns, rows, {startY: 68, columnStyles: {
+    doc.autoTable(columns, rows, {startY: 88, columnStyles: {
         0: {columnWidth: 350}, 1: {halign: 'right'}}});
     doc.save('Statement of Retained Earnings.pdf');
   }

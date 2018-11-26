@@ -16,6 +16,11 @@ export class UserLogComponent implements OnInit {
   currPage = 1;
   perPage = 10;
 
+  //for search and sort
+  column = 'logId';
+  columnSearch = 'all';
+  criteria = '';
+
   constructor(
     private logData: UserLogService,
   ) { }
@@ -28,6 +33,15 @@ export class UserLogComponent implements OnInit {
     this.logData.findAll().subscribe(
       (userLog) => {
         this.logs = userLog;
+      }
+    );
+  }
+
+  viewLogSort(column: string, direction: string, columnSearch: string, criteria: string) {
+    this.logData.findAllSort(column, direction, columnSearch, criteria).subscribe(
+      (logs) => {
+        this.logs = logs;
+        console.log("updated");
       }
     );
   }

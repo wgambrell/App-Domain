@@ -1,16 +1,23 @@
 
 <form #adminForm="ngForm">
+
   <div>
   <div class="sidenav" >
-    <div style="left: 40px; display:block">
-      <h2 style="left: 10px; position: relative"> {{indicator}} </h2>
+    <div id="center" >
+      <div id="image">
+      </div>
+    </div>
+    <div style="padding-top: 10px"></div>
+    <hr style="border-color: white; width: 80%;   margin: 0 auto;">
+    <div style="left: 40px; display:block; padding-top: -10px">
+      <h2 style="text-align: center; position: relative"> {{indicator}} </h2>
       <div>
       <button class="btn btn-link" (click)="viewHome()" id="button0" >Home </button>
       </div>
       <button class="btn btn-link" (click)="viewDashboard()" >Dashboard</button>
-      <button class="btn btn-link" (click)="viewUserList()" id="button1" *ngIf="access == 1 || access == 2">User list</button>
-      <button class="btn btn-link" (click)="viewLog()" style="display: block" id="button2" *ngIf="access == 1 || access ==2">User log</button>
-      <button class="btn btn-link" (click)="viewCoA()" style="display: block" id="button3" >Chart of accounts</button>
+      <button class="btn btn-link" (click)="viewUserList()" id="button1" *ngIf="access == 1 || access == 2">User List</button>
+      <button class="btn btn-link" (click)="viewLog()" style="display: block" id="button2" *ngIf="access == 1 || access ==2">User Log</button>
+      <button class="btn btn-link" (click)="viewCoA()" style="display: block" id="button3" >Chart of Accounts</button>
       <!--Admin can access the journal just for testing purposes -->
       <button class="btn btn-link" (click)="viewJournal()" style="display: block" id="button4" *ngIf="access == 3 || access == 2" >Journal</button>
       <button class="btn btn-link" (click)="viewGLedger()" style="display: block" id="button6" *ngIf="access == 3 || access == 2">General Ledger</button>

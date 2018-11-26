@@ -50,8 +50,12 @@
       <td>{{ account.accountNumber }}</td>
       <td *ngIf="account.normalSide == 'Debit'" style="text-align: right;">{{ account.currentBalance | number : '1.2-2'}}</td>
       <td *ngIf="account.normalSide == 'Debit'" style="text-align: right;">&nbsp;</td>
-      <td *ngIf="account.normalSide == 'Credit'" style="text-align: right;">&nbsp;</td>
-      <td *ngIf="account.normalSide == 'Credit'" style="text-align: right;">{{ account.currentBalance | number : '1.2-2'}}</td>
+      <td *ngIf="account.normalSide == 'Credit' && expensesList.length > 0" style="text-align: right;">&nbsp;</td>
+      <td *ngIf="account.normalSide == 'Credit' && expensesList.length > 0" style="text-align: right;">{{ account.currentBalance | number : '1.2-2'}}</td>
+      <td *ngIf="account.normalSide == 'Credit' && b != equitList.length -1  && expensesList.length == 0" style="text-align: right;">&nbsp;</td>
+      <td *ngIf="account.normalSide == 'Credit' && b != equitList.length -1  && expensesList.length == 0" style="text-align: right;">{{ account.currentBalance | number : '1.2-2'}}</td>
+      <td *ngIf="account.normalSide == 'Credit' && b == equitList.length -1  && expensesList.length == 0" style="text-align: right;">{{setUnderline(account.currentBalance)}}</td>
+      <td *ngIf="account.normalSide == 'Credit' && b == equitList.length -1 && expensesList.length == 0" style="text-align: right;"><u>{{ account.currentBalance | number : '1.2-2'}}</u></td>
     </tr>
     <tr *ngFor="let account of revenueList; let b = index">
       <td>

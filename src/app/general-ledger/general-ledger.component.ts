@@ -24,7 +24,7 @@ export class GeneralLedgerComponent implements OnInit {
 
   ngOnInit() {
     //this.viewAccounts();
-    this.viewAccountsSort('caId','ASC', 'All', null);
+    this.viewAccountsSort('accountNumber','ASC', 'All', null);
   }
 
   viewAccounts() {
@@ -47,6 +47,15 @@ export class GeneralLedgerComponent implements OnInit {
   }
   stuff(){
 
+  }
+
+  convertNumNegative(num: number){
+    if(num < 0){
+      return +Math.abs(num) ;
+    }
+    else {
+      return num
+    }
   }
 
 }

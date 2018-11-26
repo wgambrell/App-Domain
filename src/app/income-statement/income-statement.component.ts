@@ -98,10 +98,11 @@ export class IncomeStatementComponent implements OnInit {
 
 
     doc.setFontSize(12);
-    doc.text(240, 40, 'Income Statement');
-    doc.text(210, 60, 'For the Year Ended ' +this.currentDate.getMonth() +'/'+ this.currentDate.getDate() +'/'+ this.currentDate.getFullYear());
+    doc.text(240, 40, 'Sarif Financial');
+    doc.text(230, 60, 'Income Statement');
+    doc.text(210, 80, 'For the Year Ended ' +this.currentDate.getMonth() +'/'+ this.currentDate.getDate() +'/'+ this.currentDate.getFullYear());
 
-    doc.autoTable(columns, rows, {startY: 68, columnStyles: {
+    doc.autoTable(columns, rows, {startY: 88, columnStyles: {
         0: {columnWidth: 350}, 1: {halign: 'right'} }});
     doc.save('Income Statement.pdf');
   }

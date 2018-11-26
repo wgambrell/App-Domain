@@ -67,15 +67,24 @@
     </tr>
     <tr *ngFor="let account of currentLiabilities; let b = index">
       <td style=" text-indent: 25px "><button class="btn btn-link" (click)="viewLedger(account.accountName)">{{account.accountName}}</button></td>
-      <td>&nbsp;</td>
-      <td style="text-align: right;" *ngIf="b != currentLiabilities.length -1">{{account.currentBalance | number : '1.2-2'}}</td>
-      <td style="text-align: right;" *ngIf="b == currentLiabilities.length -1"><u>{{account.currentBalance | number : '1.2-2'}}</u></td>
+      <td *ngIf="currentLiabilities.length == 1">&nbsp;</td>
+      <td style="text-align: right;" *ngIf="b != currentLiabilities.length -1 ">{{account.currentBalance | number : '1.2-2'}}</td>
+      <td style="text-align: right;" *ngIf="b == currentLiabilities.length -1 " ><u>{{'$'+(account.currentBalance | number : '1.2-2')}}</u></td>
+      <td *ngIf="currentLiabilities.length != 1">&nbsp;</td>
+
     </tr>
+    <tr>
+      <th >Total Current Liabilities</th>
+      <td>&nbsp;</td>
+      <td style="text-align: right;"><u>{{totalCurrentLiabilities | number : '1.2-2'}}</u></td>
+    </tr>
+
     <tr *ngFor="let account of otherLiabilities; let b = index">
       <td><button class="btn btn-link" (click)="viewLedger(account.accountName)">{{account.accountName}}</button></td>
-      <td>&nbsp;</td>
+      <td *ngIf="otherLiabilities.length == 1">&nbsp;</td>
       <td style="text-align: right;" *ngIf="b != otherLiabilities.length-1">{{account.currentBalance | number : '1.2-2'}}</td>
-      <td style="text-align: right;" *ngIf="b == otherLiabilities.length-1"><u>{{account.currentBalance | number : '1.2-2'}}</u></td>
+      <td style="text-align: right;" *ngIf="b == otherLiabilities.length-1"><u>{{(account.currentBalance | number : '1.2-2')}}</u></td>
+      <td *ngIf="otherLiabilities.length != 1">&nbsp;</td>
     </tr>
     <tr>
       <th>Total Liabilities</th>

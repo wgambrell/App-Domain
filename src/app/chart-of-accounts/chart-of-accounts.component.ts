@@ -6,6 +6,7 @@ import { UserLogService } from '../services/user-log.service';
 import {NgForm} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import {timer} from 'rxjs';
 
 @Component({
   selector: 'app-chart-of-accounts',
@@ -46,6 +47,11 @@ export class ChartOfAccountsComponent implements OnInit {
   currPage = 1;
   perPage = 10;
 
+  timer = timer(8000);
+
+  //type of confirmation
+  confirmationType = '';
+
 //currencyMask
   public currencyMask = createNumberMask({
     prefix: '',
@@ -71,7 +77,7 @@ export class ChartOfAccountsComponent implements OnInit {
 
   ngOnInit() {
     this.onOpened();
-    this.viewAccountsSort('caId','ASC', 'All', null);
+    this.viewAccountsSort('accountNumber','ASC', 'All', null);
     //this.viewAccounts();
 
 
@@ -161,6 +167,7 @@ export class ChartOfAccountsComponent implements OnInit {
             });
           console.log(newDataString);
           this.logData.updateAccountLog(this.comp.getUserName(), 'Account created', null, newDataString).subscribe();
+          this.openConfirmationPopup('Account entry has been added');
         }
   }
 
@@ -242,6 +249,7 @@ export class ChartOfAccountsComponent implements OnInit {
           let modal = document.getElementById("editAccountModal");
           modal.style.display = "none";
           this.viewAccountsSort(this.column, 'ASC', this.columnSearch, this.criteria);
+          this.openConfirmationPopup('Account entry has been updated');
         });
     }
   }
@@ -320,5 +328,28 @@ export class ChartOfAccountsComponent implements OnInit {
   isNegativeNumber(accountNumber) {
     return (accountNumber < 0);
   }
+
+  openConfirmationPopup(type: string) {
+    this.confirmationType = type;
+    var modal = document.getElementById('popupModalConfirm');
+    modal.classList.add('show');
+    this.setTimer();
+
+  }
+  setTimer(){
+    var modal = document.getElementById('popupModalConfirm');
+    this.timer.subscribe(() => {
+      modal.classList.remove('show');
+    });
+  }
+  convertNumNegative(num: number){
+    if(num < 0){
+      return +Math.abs(num) ;
+    }
+    else {
+      return num
+    }
+  }
+
 }
 

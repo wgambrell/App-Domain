@@ -17,12 +17,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CoAService {
-  private coaUrl = 'https://server-sarif-financial1.herokuapp.com/api/chartOfAccounts';  // URL to web api
-  private findAccountNameUrl = 'https://server-sarif-financial1.herokuapp.com/api/chartOfAccounts/account';
-  private chartSortUrl = 'https://server-sarif-financial1.herokuapp.com/api/chartSort';
-  private nameCheckUrl = 'https://server-sarif-financial1.herokuapp.com/api/accountNameCheck';
-  private numberCheckUrl = 'https://server-sarif-financial1.herokuapp.com/api/accountNumberCheck';
-  private  getByNameUrl = 'https://server-sarif-financial1.herokuapp.com/api/getAccountByName';
+  private coaUrl = 'http://localhost:8080/api/chartOfAccounts';  // URL to web api
+  private findAccountNameUrl = 'http://localhost:8080/api/chartOfAccounts/account';
+  private chartSortUrl = 'http://localhost:8080/api/chartSort';
+  private nameCheckUrl = 'http://localhost:8080/api/accountNameCheck';
+  private numberCheckUrl = 'http://localhost:8080/api/accountNumberCheck';
+  private  getByNameUrl = 'http://localhost:8080/api/getAccountByName';
   constructor(
     private http: HttpClient
   ) { }

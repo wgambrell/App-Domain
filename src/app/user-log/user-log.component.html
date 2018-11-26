@@ -1,5 +1,15 @@
-<div>
+
+<div style="position:  relative;left: 58%;  padding-top: 20px">
+  <div class="form-group">
+    <input type="text" class="form-control" id="searchBar"  style="width: 300px; left: 6px" placeholder="Search" (ngModelChange)="viewLogSort(column,'ASC', columnSearch, $event)" required [(ngModel)]="criteria"
+           name="search" >
+  </div>
+</div>
+<div style="margin: auto; width: 50%;">
   <table id="logTable" >
+    <tr>
+      <th colspan="4" style="text-align: center">User Log</th>
+    </tr>
     <tr>
       <th>Username</th>
       <th>Action Type</th>
@@ -9,7 +19,7 @@
 
       <ng-container *ngIf="log.actionType==='Account created' || log.actionType==='Journal created'; else accountUpdated">
         <td style="vertical-align: top">{{ log.userName }}</td>
-        <td style="vertical-align: top">{{ log.actionType }}</td>
+        <td style="vertical-align: top; width: 185px">{{ log.actionType }}</td>
         <td style="width: 800px">{{'Created: ' + (log.newData) }}</td>
         <td style="vertical-align: top">{{ log.createdAt | date: 'MM/dd/yyyy HH:mm:ss'}}</td>
       </ng-container>

@@ -5,6 +5,7 @@ import { Journal } from '../journal';
 import {JournalAccount} from '../journalAccount';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import saveAs from 'file-saver';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,10 +32,14 @@ export class IndividualJournalComponent implements OnInit {
     Reference: '',
     CreatedBy: '',
     FileID: 0,
+    Type: '',
+    FileName: '',
     JournalAccounts: [],
     acceptance: '',
   };
   journals = [];
+
+
 
   constructor(
     private journalServ: JournalizeService,
@@ -82,24 +87,15 @@ export class IndividualJournalComponent implements OnInit {
 
   }
 
-  getJournalFile(event: number){
-    this.http.post<any>(this.fileRetrieve, {jID: event}, httpOptions).subscribe( result => {
-      console.log(result.FileData.data);
-      var res = result.FileData.data;
-      for(let r of res){
-        if(r == 10){
-          this.documentInfo = this.documentInfo + '\n';
-        }
-        else {
-          let res2 = String.fromCharCode(r);
-          this.documentInfo = this.documentInfo + res2;
-        }
-      }
-      console.log(this.documentInfo);
+  getJournalFile(event: number, filename: string){
+    //this.http.post<any>(this.fileRetrieve, {jID: event}, httpOptions).subscribe( result => {
+      //var newBlob = new Blob([result.data], { type: "application/pdf"});
 
-    });
-    var modal = document.getElementById('viewSource');
-    modal.style.display = "block";
+      this.journalServ.downloadReport(event).subscribe(data => {
+        console.log(data);
+        saveAs(data, filename);
+      });
+
   }
   closeFile() {
     this.documentInfo = '';

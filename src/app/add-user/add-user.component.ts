@@ -8,7 +8,7 @@ import {SharedDataService } from '../services/shared-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import { Observable, of,  } from 'rxjs';
+import {Observable, of, timer,} from 'rxjs';
 
 
 @Component({
@@ -38,6 +38,10 @@ export class AddUserComponent implements OnInit {
   userInfo2 = new User();
   userActive = "sss";
   userActive2 = " ";
+  timer = timer(8000);
+
+  //type of confirmation
+  confirmationType = '';
 
   //for search and sort
   column = 'userId';
@@ -185,6 +189,7 @@ export class AddUserComponent implements OnInit {
 
         });
       this.logData.updateAccountLog(this.comp.getUserName(), 'User created', null, newDataString).subscribe();
+      this.openConfirmationPopup('User entry has been added');
     }
   }
 //submit an edit
@@ -229,6 +234,7 @@ export class AddUserComponent implements OnInit {
           this.passwordAcceptable = 1;
         });
       this.logData.updateAccountLog(this.comp.getUserName(), 'User updated', prevDataString, newDataString).subscribe();
+      this.openConfirmationPopup('User entry has been updated');
     }
   }
 //check if password is appropriate
@@ -372,6 +378,20 @@ export class AddUserComponent implements OnInit {
       }
       );
 
+  }
+
+  openConfirmationPopup(type: string) {
+    this.confirmationType = type;
+    var modal = document.getElementById('popupModalConfirm');
+    modal.classList.add('show');
+    this.setTimer();
+
+  }
+  setTimer(){
+    var modal = document.getElementById('popupModalConfirm');
+    this.timer.subscribe(() => {
+      modal.classList.remove('show');
+    });
   }
 }
 

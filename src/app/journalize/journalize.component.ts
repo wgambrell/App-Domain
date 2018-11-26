@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import {SharedDataService } from '../services/shared-data.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import {UserLogService} from '../services/user-log.service';
+import saveAs from 'file-saver';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -36,8 +37,8 @@ export class JournalizeComponent implements OnInit {
   @ViewChild('addJournalForm') public journalForm: NgForm;
   @ViewChild('journalAccountAddTable') public accountsTable: NgForm;
   @ViewChild('folderInput') public myInputVariable: ElementRef;
-  private fileUploadURL = 'https://server-sarif-financial1.herokuapp.com/api/journalFiles';
-  private fileRetrieve = 'https://server-sarif-financial1.herokuapp.com/api/retreiveJournalFiles';
+  private fileUploadURL = 'http://localhost:8080/api/journalFiles';
+  private fileRetrieve = 'http://localhost:8080/api/retreiveJournalFiles';
   journalNew = new Journal();
   journals = []; //list of journal entries
   timer = timer(8000);
@@ -69,6 +70,9 @@ export class JournalizeComponent implements OnInit {
   totalsmatch = 1;
   repeatDebitAccount = 1;
   repeatCreditAccount = 1;
+
+  //type of confirmation
+  confirmationType = '';
 
   //user access
   access = 0;
@@ -119,6 +123,7 @@ export class JournalizeComponent implements OnInit {
   ngOnInit() {
     this.journals = [];
     this.journals.length = 0;
+    this.journalNew.Type = 'Normal';
     this.onOpened();
     this.getAccounts();
     //this.viewJournals();
@@ -179,11 +184,11 @@ export class JournalizeComponent implements OnInit {
     this.accounts = result;
     console.log("Hello");
     for (let account of this.accounts) {
-      if (account.normalSide == 'Debit') {
+      if (account.normalSide == 'Debit' && account.active == 'Active') {
         this.debitAccounts.push(account.accountName);
         console.log("Debit: " + account.accountName)
       }
-      else {
+      else if(account.normalSide == 'Credit' && account.active == 'Active'){
         this.creditAccounts.push(account.accountName);
         console.log("Credit: " + account.accountName)
       }
@@ -294,6 +299,8 @@ export class JournalizeComponent implements OnInit {
     modal.style.display = "none";
     this.journalForm.reset();
     this.selectedFile = null;
+    this.model = {date: {year: this.date1.getFullYear(),  day: this.date1.getDate(), month: this.date1.getMonth()}};
+    this.journalNew.Type = 'Normal';
     this.repeatDebitAccount = 1;
     this.repeatCreditAccount = 1;
     this.myInputVariable.nativeElement.value = "";
@@ -390,6 +397,7 @@ export class JournalizeComponent implements OnInit {
         console.log(result);
         this.myInputVariable.nativeElement.value = "";
         fileID = result;
+        this.journalNew.FileName = this.selectedFile.name;
       }
 
       let id: number;
@@ -400,6 +408,9 @@ export class JournalizeComponent implements OnInit {
       this.journalNew.CreatedBy = this.comp.getUserName();
       this.journalNew.Reference = this.makeRandomRef();
       this.journalNew.FileID = fileID;
+      if(this.journalNew.Type == null || this.journalNew.Type == undefined){
+        this.journalNew.Type = 'Normal';
+      }
       console.log(this.journalNew.Date);
       //sending prinmary journal data
       let response = await this.journalServ.addJournal(this.journalNew).toPromise();
@@ -458,7 +469,7 @@ export class JournalizeComponent implements OnInit {
 
       this.viewJournalsSort('JId', 'DESC', 'all', '', this.approvalType);
       this.close();
-      this.openConfirmationPopup();
+      this.openConfirmationPopup('Your Journal entry has been added');
     }
   }
 
@@ -502,6 +513,7 @@ export class JournalizeComponent implements OnInit {
               CoA.currentBalance = +CoA.currentBalance + +ledger.DebitAmount;
               await this.coaService.updateAccount(CoA).toPromise();
 
+
             }
             else {
               CoA.currentBalance = +CoA.currentBalance - +ledger.CreditAmount;
@@ -521,6 +533,7 @@ export class JournalizeComponent implements OnInit {
 
             }
           }
+
           break;
         }
       }
@@ -540,6 +553,8 @@ export class JournalizeComponent implements OnInit {
     });
     newDataString = journal.Reference;
     this.logData.updateAccountLog(this.comp.getUserName(), 'Journal approved', null, newDataString).subscribe();
+    this.viewJournalsSort('JId', 'ASC', 'all', this.criteria, this.approvalType);
+    this.openConfirmationPopup('Journal has been approved');
 
   }
 
@@ -559,6 +574,8 @@ export class JournalizeComponent implements OnInit {
     });
     newDataString = journal.Reference;
     this.logData.updateAccountLog(this.comp.getUserName(), 'Journal declined', null, newDataString).subscribe();
+    this.openConfirmationPopup('Journal has been declined');
+    this.viewJournalsSort('JId', 'ASC', 'all', this.criteria, this.approvalType);
 
   }
 
@@ -573,24 +590,15 @@ export class JournalizeComponent implements OnInit {
   }
 
 
-  getJournalFile(event: number){
-    this.http.post<any>(this.fileRetrieve, {jID: event}, httpOptions).subscribe( result => {
-      console.log(result.FileData.data);
-      var res = result.FileData.data;
-      for(let r of res){
-        if(r == 10){
-          this.documentInfo = this.documentInfo + '\n';
-        }
-        else {
-          let res2 = String.fromCharCode(r);
-          this.documentInfo = this.documentInfo + res2;
-        }
-      }
-      console.log(this.documentInfo);
+  getJournalFile(event: number, filename: string){
+    //this.http.post<any>(this.fileRetrieve, {jID: event}, httpOptions).subscribe( result => {
+    //var newBlob = new Blob([result.data], { type: "application/pdf"});
 
+    this.journalServ.downloadReport(event).subscribe(data => {
+      console.log(data);
+      saveAs(data, filename);
     });
-    var modal = document.getElementById('viewSource');
-    modal.style.display = "block";
+
   }
   closeFile() {
     this.documentInfo = '';
@@ -599,7 +607,8 @@ export class JournalizeComponent implements OnInit {
   }
 
 
-  openConfirmationPopup() {
+  openConfirmationPopup(type: string) {
+    this.confirmationType = type;
     var modal = document.getElementById('popupModalConfirm');
     modal.classList.add('show');
     this.setTimer();

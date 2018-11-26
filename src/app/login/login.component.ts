@@ -47,8 +47,11 @@ export class LoginComponent implements OnInit {
           this.logData.create(this.username, 'User successful login').subscribe();
           this.comp.setSession(this.user.userId, this.user.userName, this.user.userRole, this.user.firstName, this.user.lastName);
           this.isActive = 1;
-          if(this.user.userRole == 'admin' || this.user.userRole == 'accountant'){
+          if(this.user.userRole == 'accountant'){
             this.router.navigate(['UserPage']);
+          }
+          else if(this.user.userRole == 'admin' ){
+            this.router.navigate(['UserPage/dashboard']);
           }
           else{
             this.router.navigate(['UserPage/journal']);

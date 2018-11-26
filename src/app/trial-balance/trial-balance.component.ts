@@ -191,10 +191,11 @@ export class TrialBalanceComponent implements OnInit {
     }
     rows.push([' ', ' ', this.debitTotal, this.creditTotal]);
     doc.setFontSize(12);
-    doc.text(226, 40, this.data.getTrialBalance());
-    doc.text(210, 60, 'For the Year Ended ' +this.currentDate.getMonth() +'/'+ this.currentDate.getDate() +'/'+ this.currentDate.getFullYear());
+    doc.text(240, 40, 'Sarif Financial');
+    doc.text(226, 60, this.data.getTrialBalance());
+    doc.text(210, 80, 'For the Year Ended ' +this.currentDate.getMonth() +'/'+ this.currentDate.getDate() +'/'+ this.currentDate.getFullYear());
 
-    doc.autoTable(columns, rows, {startY: 68, columnStyles: {
+    doc.autoTable(columns, rows, {startY: 88, columnStyles: {
         0: {columnWidth: 350}, 2: {halign: 'right'}, 3: {halign: 'right'}, }});
     doc.save(this.data.getTrialBalance() + '.pdf');
   }

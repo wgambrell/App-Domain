@@ -46,7 +46,7 @@
           <option>Property, Plant, and Equipment</option>
           <option>Current Liabilities</option>
           <option>Long-term Liabilities</option>
-          <option>Stocholders' Equity</option>
+          <option>Stockholders' Equity</option>
           <option>Operating Revenues</option>
           <option>Cost of Goods Sold</option>
           <option>Other</option>
@@ -180,6 +180,14 @@
   </div>
 </div>
 
+<div id="popupModalConfirm" class="modal2" >
+  <div class="modal-content3">
+    <div class="alert alert-success">
+      {{confirmationType}}
+    </div>
+  </div>
+</div>
+
 <!--search bar -->
 <form class="form-inline" style="left: 8px">
   <div style="position:  relative;left: 75%;  padding-top: 20px">
@@ -192,11 +200,11 @@
 </form>
 
 <button class="btn btn-info btn-lg" (click)="createAccount()" id='createAccountBtn' *ngIf="access == 1">Create Account</button>
-
+<div style="padding-top: 5px">
 <div class="form-group">
   <table id="accountTable">
     <tr>
-      <th (click)="viewAccountsSort('accountNumber','ASC',columnSearch,criteria)">Account Number</th>
+      <th (click)="viewAccountsSort('accountNumber','ASC',columnSearch,criteria)">Account Number </th>
       <th (click)="viewAccountsSort('accountName','ASC',columnSearch,criteria)">Account Name</th>
       <th (click)="viewAccountsSort('accountType','ASC',columnSearch,criteria)">Account Type</th>
       <th (click)="viewAccountsSort('accountSubType','ASC',columnSearch,criteria)">Account Subtype</th>
@@ -214,7 +222,8 @@
       <td>{{ account.accountSubType }}</td>
       <td>{{ account.normalSide }}</td>
       <td style="text-align: right;">{{ account.originalBalance | number : '1.2-2'}}</td>
-      <td style="text-align: right;">{{ account.currentBalance | number : '1.2-2'}}</td>
+      <td style="text-align: right;" *ngIf="account.currentBalance >= 0">{{account.currentBalance | number : '1.2-2'}}</td>
+      <td style="text-align: right;" *ngIf="account.currentBalance < 0">{{'('+(convertNumNegative(account.currentBalance) | number : '1.2-2')+')'}}</td>
       <td>{{ account.comment }}</td>
       <td>{{ account.active }}</td>
       <td>{{ account.createdBy }}</td>
@@ -236,4 +245,5 @@
     <pagination-controls style="float: left" (pageChange)="currPage = $event"></pagination-controls>
   </div>
 
+</div>
 </div>
