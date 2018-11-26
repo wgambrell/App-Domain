@@ -16,8 +16,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserLogService {
-  private log = 'http://localhost:8080/api/log';
-  private logSort = 'http://localhost:8080/api/logSort';
+  private log = 'https://server-sarif-financial1.herokuapp.com/api/log';
+  private logSort = 'https://server-sarif-financial1.herokuapp.com/api/logSort';
   constructor(
     private http: HttpClient
   ) { }
