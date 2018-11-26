@@ -299,7 +299,7 @@ export class JournalizeComponent implements OnInit {
     modal.style.display = "none";
     this.journalForm.reset();
     this.selectedFile = null;
-    this.model = {date: {year: this.date1.getFullYear(),  day: this.date1.getDate(), month: this.date1.getMonth()}};
+    this.model = {date: {year: this.date1.getFullYear(),  day: this.date1.getDate(), month: this.date1.getMonth() + 1}};
     this.journalNew.Type = 'Normal';
     this.repeatDebitAccount = 1;
     this.repeatCreditAccount = 1;
