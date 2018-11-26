@@ -553,7 +553,6 @@ export class JournalizeComponent implements OnInit {
     });
     newDataString = journal.Reference;
     this.logData.updateAccountLog(this.comp.getUserName(), 'Journal approved', null, newDataString).subscribe();
-    this.viewJournalsSort('JId', 'ASC', 'all', this.criteria, this.approvalType);
     this.openConfirmationPopup('Journal has been approved');
 
   }
@@ -575,7 +574,6 @@ export class JournalizeComponent implements OnInit {
     newDataString = journal.Reference;
     this.logData.updateAccountLog(this.comp.getUserName(), 'Journal declined', null, newDataString).subscribe();
     this.openConfirmationPopup('Journal has been declined');
-    this.viewJournalsSort('JId', 'ASC', 'all', this.criteria, this.approvalType);
 
   }
 

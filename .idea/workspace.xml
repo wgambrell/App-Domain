@@ -277,16 +277,16 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="1" />
+          <entry key="html" value="3" />
           <entry key="json" value="1" />
-          <entry key="ts" value="8" />
+          <entry key="ts" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="1" />
+          <entry key="HTML" value="3" />
           <entry key="JSON" value="1" />
-          <entry key="TypeScript" value="8" />
+          <entry key="TypeScript" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -304,10 +304,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/src/app/trial-balance/trial-balance.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="2040">
+              <caret line="124" column="14" selection-start-line="122" selection-start-column="2" selection-end-line="129" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -360,19 +360,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/services/shared-data.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-146">
+            <state>
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/services/user.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="28" column="61" lean-forward="true" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -396,11 +387,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/journalize/journalize.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="340">
+              <caret line="554" column="112" selection-start-line="554" selection-start-column="112" selection-end-line="554" selection-end-column="112" />
               <folding>
                 <element signature="e#0#71#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/services/user.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="28" column="61" lean-forward="true" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -582,6 +582,13 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="App-Domain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="App-Domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="trial-balance" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -593,8 +600,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543201990440" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543203507958" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../App-Domain-Backend1" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="C:\Users\tyler_000\Desktop\SarifFinancialApi\client\node_modules\tslint" />
@@ -690,12 +697,12 @@
       <workItem from="1542939470187" duration="7109000" />
       <workItem from="1543027112047" duration="16074000" />
       <workItem from="1543176345205" duration="5012000" />
-      <workItem from="1543201773450" duration="218000" />
+      <workItem from="1543201773450" duration="1511000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="532321000" />
+    <option name="totallyTimeSpent" value="533614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="146" y="79" width="1535" height="930" extended-state="0" />
@@ -953,13 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/trial-balance/trial-balance.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="99" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/individual-ledger/individual-ledger.component.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -994,13 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/trial-balance/trial-balance.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="124" column="14" selection-start-line="122" selection-start-column="2" selection-end-line="129" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/chart-of-accounts/chart-of-accounts.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-31">
@@ -1012,6 +1005,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/trial-balance/trial-balance.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="99" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/trial-balance/trial-balance.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="124" column="14" selection-start-line="122" selection-start-column="2" selection-end-line="129" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1054,7 +1061,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/shared-data.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
+        <state>
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -1091,8 +1098,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/journalize/journalize.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="340">
+          <caret line="554" column="112" selection-start-line="554" selection-start-column="112" selection-end-line="554" selection-end-column="112" />
           <folding>
             <element signature="e#0#71#0" expanded="true" />
           </folding>
