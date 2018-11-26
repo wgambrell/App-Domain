@@ -82,7 +82,7 @@ export class JournalizeComponent implements OnInit {
   perPage = 5;
   public date1 =new Date();
 
-  model: any = {date: {year: this.date1.getFullYear(),  day: this.date1.getDate(), month: this.date1.getMonth()}};
+  model: any = {date: {year: this.date1.getFullYear(),  day: this.date1.getDate(), month: this.date1.getMonth() + 1}};
 
   myDatePickerOptions: IMyDpOptions = {
     disableUntil: {year:this.model.date.year, month: this.model.date.month, day: this.model.date.day -1},
@@ -548,9 +548,7 @@ export class JournalizeComponent implements OnInit {
     journaltemp.Reference = journal.Reference;
     journaltemp.CreatedBy = journal.CreatedBy;
     console.log(journaltemp);
-    this.journalServ.updateJournal(journaltemp).subscribe((result) => {
-      console.log(result);
-    });
+    await this.journalServ.updateJournal(journaltemp).toPromise();
     newDataString = journal.Reference;
     this.logData.updateAccountLog(this.comp.getUserName(), 'Journal approved', null, newDataString).subscribe();
     this.openConfirmationPopup('Journal has been approved');
@@ -568,9 +566,7 @@ export class JournalizeComponent implements OnInit {
     journaltemp.Reference = journal.Reference;
     journaltemp.CreatedBy = journal.CreatedBy;
     console.log(journaltemp);
-    this.journalServ.updateJournal(journaltemp).subscribe((result) => {
-      console.log(result);
-    });
+    await this.journalServ.updateJournal(journaltemp).toPromise();
     newDataString = journal.Reference;
     this.logData.updateAccountLog(this.comp.getUserName(), 'Journal declined', null, newDataString).subscribe();
     this.openConfirmationPopup('Journal has been declined');
